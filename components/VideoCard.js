@@ -105,9 +105,11 @@ export default function VideoCard({ id, title }) {
           />
         </ImageWrapper>
         <User>
-          <div style={{ borderRadius: "50%", overflow: "hidden" }}>
+          <div
+            style={{ borderRadius: "50%", overflow: "hidden", display: "flex" }}
+          >
             <Image
-              src={`/images/userImage.jpg`}
+              src={`/images/userImage2.jpeg`}
               alt="User image"
               width={32}
               height={32}
