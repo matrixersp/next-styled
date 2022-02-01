@@ -99,48 +99,58 @@ const loader = ({ src, width, quality }) => {
   return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
 };
 
-export default function VideoCard({ id, title }) {
+export default function VideoCard({ id, userId, title }) {
   return (
-    <Container>
-      <Media>
-        <ImageWrapper>
-          <Image
-            // loader={loader}
-            src={`/images/sampleImage${id}.jpeg`}
-            alt="Sample image"
-            layout="fill"
-            objectFit="cover"
-            className="radius"
-          />
-        </ImageWrapper>
-        <User>
-          <div
-            style={{ borderRadius: "50%", overflow: "hidden", display: "flex" }}
-          >
+    <a href={`/videos/${userId}`} rel="noopener noreferrer">
+      <Container>
+        <Media>
+          <ImageWrapper>
             <Image
-              src={`/images/userImage2.jpeg`}
-              alt="User image"
-              width={32}
-              height={32}
+              // loader={loader}
+              src={`/images/sampleImage${id}.jpeg`}
+              alt="Sample image"
+              layout="fill"
               objectFit="cover"
+              className="radius"
             />
-          </div>
-          <Username>Estertaniaj</Username>
-        </User>
-        <PlayIcon src="/images/play_icon.png" alt="Play icon" />
-        <Product>
-          <ProductImageWrapper>
-            <Image
-              src={`/images/productImage.png`}
-              alt="Product picture"
-              width={62}
-              height={62}
-            />
-          </ProductImageWrapper>
-          <span style={{ fontWeight: "bold", fontSize: "0.9rem" }}>$35.95</span>
-        </Product>
-      </Media>
-      <Description>{title}</Description>
-    </Container>
+          </ImageWrapper>
+          <a href={`/users/${userId}`} rel="noopener noreferrer">
+            <User>
+              <div
+                style={{
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  display: "flex",
+                }}
+              >
+                <Image
+                  src={`/images/userImage2.jpeg`}
+                  alt="User image"
+                  width={32}
+                  height={32}
+                  objectFit="cover"
+                />
+              </div>
+              <Username>Estertaniaj</Username>
+            </User>
+          </a>
+          <PlayIcon src="/images/play_icon.png" alt="Play icon" />
+          <Product>
+            <ProductImageWrapper>
+              <Image
+                src={`/images/productImage.png`}
+                alt="Product picture"
+                width={62}
+                height={62}
+              />
+            </ProductImageWrapper>
+            <span style={{ fontWeight: "bold", fontSize: "0.9rem" }}>
+              $35.95
+            </span>
+          </Product>
+        </Media>
+        <Description>{title}</Description>
+      </Container>
+    </a>
   );
 }

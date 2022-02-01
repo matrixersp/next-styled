@@ -2,11 +2,31 @@ import VideoCard from "./VideoCard";
 import styled from "styled-components";
 
 const videoCards = [
-  { id: 1, title: "Should I start a YouTube channel for makeup storytimes" },
-  { id: 2, title: "Should I start a YouTube channel for makeup storytimes" },
-  { id: 3, title: "Should I start a YouTube channel for makeup storytimes" },
-  { id: 4, title: "Should I start a YouTube channel for makeup storytimes" },
-  { id: 5, title: "Should I start a YouTube channel for makeup storytimes" },
+  {
+    id: 1,
+    userId: 1,
+    title: "Should I start a YouTube channel for makeup storytimes",
+  },
+  {
+    id: 2,
+    userId: 2,
+    title: "Should I start a YouTube channel for makeup storytimes",
+  },
+  {
+    id: 3,
+    userId: 3,
+    title: "Should I start a YouTube channel for makeup storytimes",
+  },
+  {
+    id: 4,
+    userId: 4,
+    title: "Should I start a YouTube channel for makeup storytimes",
+  },
+  {
+    id: 5,
+    userId: 5,
+    title: "Should I start a YouTube channel for makeup storytimes",
+  },
 ];
 
 const VideosContainer = styled.div`
