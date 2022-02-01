@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -66,6 +67,9 @@ const Username = styled.span`
   margin-left: 10px;
   font-weight: bold;
   color: white;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const PlayIcon = styled.img`
@@ -100,8 +104,21 @@ const loader = ({ src, width, quality }) => {
 };
 
 export default function VideoCard({ id, userId, title }) {
+  const router = useRouter();
+
+  const handleRedirectToVideo = (e) => {
+    e.preventDefault();
+    router.push(`/videos/${id}`);
+  };
+
+  const handleRedirectToUser = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    router.push(`/users/${userId}`);
+  };
+
   return (
-    <a href={`/videos/${userId}`} rel="noopener noreferrer">
+    <a href="#" onClick={handleRedirectToVideo} rel="noopener noreferrer">
       <Container>
         <Media>
           <ImageWrapper>
@@ -114,7 +131,7 @@ export default function VideoCard({ id, userId, title }) {
               className="radius"
             />
           </ImageWrapper>
-          <a href={`/users/${userId}`} rel="noopener noreferrer">
+          <a href="#" onClick={handleRedirectToUser} rel="noopener noreferrer">
             <User>
               <div
                 style={{
