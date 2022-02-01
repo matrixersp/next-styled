@@ -3,8 +3,6 @@ import styled from "styled-components";
 import Image from "next/image";
 
 const Container = styled.div`
-  width: 96%;
-  max-width: 250px;
   margin: 0 auto;
   position: relative;
   border: 1px solid #e5e5e5;
@@ -20,9 +18,13 @@ const Media = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
+  height: 300px;
+  @media (max-width: 992px) {
+    height: 400px;
+  }
+  @media (max-width: 600px) {
+    height: 500px;
+  }
   &:after {
     content: "";
     display: block;
@@ -97,9 +99,9 @@ export default function VideoCard({ id, title }) {
             // loader={loader}
             src={`/images/sampleImage${id}.jpeg`}
             alt="Sample image"
-            width={288}
-            height={450}
+            layout="fill"
             objectFit="cover"
+            className="radius"
           />
         </ImageWrapper>
         <User>
