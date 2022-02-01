@@ -1,0 +1,138 @@
+import React from "react";
+import styled from "styled-components";
+import Image from "next/image";
+
+const Container = styled.div`
+  width: 96%;
+  max-width: 250px;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: white;
+  margin: 10px;
+`;
+
+const Media = styled.div`
+  margin-bottom: 58px;
+  position: relative;
+`;
+
+const ImageWrapper = styled.div`
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 50% 100%,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0.4) 80%,
+      rgba(0, 0, 0, 0.75) 100%
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+
+const Product = styled.div`
+  position: absolute;
+  top: 102%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const User = styled.div`
+  position: absolute;
+  z-index: 100;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+const Username = styled.span`
+  margin-left: 10px;
+  font-weight: bold;
+  color: white;
+`;
+
+const PlayIcon = styled.img`
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const Description = styled.p`
+  padding: 12px 18px;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.4;
+`;
+
+const loader = ({ src, width, quality }) => {
+  return `https://example.com/${src}?w=${width}&q=${quality || 75}`;
+};
+
+export default function VideoCard({ id, title }) {
+  return (
+    <Container>
+      <Media>
+        <ImageWrapper>
+          <Image
+            // loader={loader}
+            src={`/images/sampleImage${id}.jpeg`}
+            alt="Sample image"
+            width={288}
+            height={450}
+            objectFit="cover"
+          />
+        </ImageWrapper>
+        <User>
+          <div style={{ borderRadius: "50%", overflow: "hidden" }}>
+            <Image
+              src={`/images/userImage.jpg`}
+              alt="User image"
+              width={32}
+              height={32}
+              objectFit="cover"
+            />
+          </div>
+          <Username>Estertaniaj</Username>
+        </User>
+        <PlayIcon src="/images/play_icon.png" alt="Play icon" />
+        <Product>
+          <div
+            style={{
+              borderRadius: "8px",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src={`/images/productImage.png`}
+              alt="Product picture"
+              width={64}
+              height={64}
+            />
+          </div>
+          <span style={{ fontWeight: "bold", fontSize: "0.9rem" }}>$35.95</span>
+        </Product>
+      </Media>
+      <Description>{title}</Description>
+    </Container>
+  );
+}
