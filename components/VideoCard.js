@@ -78,6 +78,14 @@ const PlayIcon = styled.img`
   transform: translate(-50%, -50%);
 `;
 
+const ProductImageWrapper = styled.div`
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.19);
+  margin-bottom: 8px;
+`;
+
 const Description = styled.p`
   padding: 12px 18px;
   font-size: 0.85rem;
@@ -120,19 +128,14 @@ export default function VideoCard({ id, title }) {
         </User>
         <PlayIcon src="/images/play_icon.png" alt="Play icon" />
         <Product>
-          <div
-            style={{
-              borderRadius: "8px",
-              overflow: "hidden",
-            }}
-          >
+          <ProductImageWrapper>
             <Image
               src={`/images/productImage.png`}
               alt="Product picture"
-              width={64}
-              height={64}
+              width={62}
+              height={62}
             />
-          </div>
+          </ProductImageWrapper>
           <span style={{ fontWeight: "bold", fontSize: "0.9rem" }}>$35.95</span>
         </Product>
       </Media>
