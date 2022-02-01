@@ -84,6 +84,7 @@ const ProductImageWrapper = styled.div`
   border: 2px solid #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.19);
   margin-bottom: 8px;
+  display: flex;
 `;
 
 const Description = styled.p`
