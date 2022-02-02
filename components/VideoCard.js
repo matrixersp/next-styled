@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import toBase64 from "./toBase64";
+import Shimmer from "./Shimmer";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -25,21 +27,6 @@ const ImageWrapper = styled.div`
   }
   @media (max-width: 600px) {
     height: 500px;
-  }
-  &:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-      circle at 50% 100%,
-      rgba(0, 0, 0, 0) 70%,
-      rgba(0, 0, 0, 0.4) 80%,
-      rgba(0, 0, 0, 0.75) 100%
-    );
-    position: absolute;
-    top: 0;
-    left: 0;
   }
 `;
 
@@ -105,6 +92,7 @@ const loader = ({ src, width, quality }) => {
 
 export default function VideoCard({ id, userId, title }) {
   const router = useRouter();
+  const [imageLoaded, setImageLoaded] = React.useState(false);
 
   const handleRedirectToVideo = (e) => {
     e.preventDefault();
@@ -117,18 +105,31 @@ export default function VideoCard({ id, userId, title }) {
     router.push(`/users/${userId}`);
   };
 
+  const handleImageLoaded = () => {
+    setImageLoaded(true);
+  };
+
   return (
-    <a href="#" onClick={handleRedirectToVideo} rel="noopener noreferrer">
+    <div
+      role="link"
+      onClick={handleRedirectToVideo}
+      rel="noopener noreferrer"
+      style={{ cursor: "pointer" }}
+    >
       <Container>
         <Media>
-          <ImageWrapper>
+          <ImageWrapper className={imageLoaded && "imageWrapper"}>
             <Image
-              // loader={loader}
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                Shimmer(400, 350)
+              )}`}
               src={`/images/sampleImage${id}.jpeg`}
               alt="Sample image"
               layout="fill"
               objectFit="cover"
               className="radius"
+              onLoad={handleImageLoaded}
             />
           </ImageWrapper>
           <a href="#" onClick={handleRedirectToUser} rel="noopener noreferrer">
@@ -168,6 +169,6 @@ export default function VideoCard({ id, userId, title }) {
         </Media>
         <Description>{title}</Description>
       </Container>
-    </a>
+    </div>
   );
 }
